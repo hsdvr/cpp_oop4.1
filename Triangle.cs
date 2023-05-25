@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace OOPLab4
 {
-    internal class CCircle : Figure
+    internal class Triangle : Figure
     {
-        public int radius { get; set; }
 
-        public CCircle(int x, int y, Color color, int radius = 50)
+        public int side;
+        public Triangle(int x, int y, Color color, int side = 100)
         {
             this.x = x;
             this.y = y;
-            this.radius = radius;
+            this.side = side;
             standartPen = new Pen(Color.Black, 5);
             selectedPen = new Pen(Color.Red, 5);
             isActive = false;
@@ -25,19 +25,24 @@ namespace OOPLab4
         {
             if (isActive)
             {
-                g.DrawEllipse(selectedPen, x - radius, y - radius, radius * 2, radius * 2);
+                g.DrawPolygon(selectedPen, new Point[] { new Point(x, y - side), new Point((x + side), y), new Point(x - side, y) });
 
             }
             else
             {
-                g.DrawEllipse(standartPen, x - radius, y - radius, radius * 2, radius * 2);
+                g.DrawPolygon(standartPen, new Point[] { new Point(x, y - side), new Point((x + side), y), new Point(x - side, y) });
             }
-            g.FillEllipse(new SolidBrush(currentColor), new Rectangle(x - radius, y - radius, radius * 2, radius * 2));
+            g.FillPolygon(new SolidBrush(currentColor), new Point[] { new Point(x, y - side), new Point((x + side), y), new Point(x - side, y) });
         }
 
         public override bool intersects(MyVector coords)
         {
-            if ((coords.X - x) * (coords.X - x) + (coords.Y - y) * (coords.Y - y) <= radius * radius)
+
+            int a = (x - coords.X) * (side) - (x - side - x) * (y - side - coords.Y);
+            int b = -2 * side * (y - coords.Y);
+            int c = (x + side - coords.X) * (-side) - (-side) * (y - coords.Y);
+
+            if ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0))
             {
                 return true;
             }
@@ -60,15 +65,15 @@ namespace OOPLab4
 
         public override void getRect(MyVector leftTop, MyVector rightBottom)
         {
-            leftTop.X = x - radius;
-            leftTop.Y = y - radius;
-            rightBottom.X = x + radius;
-            rightBottom.Y = y + radius;
+            leftTop.X = x - side;
+            leftTop.Y = y - side;
+            rightBottom.X = x + side;
+            rightBottom.Y = y;
         }
 
         public override void changeScale(float factor)
         {
-            radius = Convert.ToInt32(factor * radius);
+            side = Convert.ToInt32(factor * side);
         }
     }
 }

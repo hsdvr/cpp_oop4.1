@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace OOPLab4
 {
-    internal class CCircle : Figure
+    internal class Square : Figure
     {
-        public int radius { get; set; }
+        public int sideLength { get; set; }
 
-        public CCircle(int x, int y, Color color, int radius = 50)
+        public Square(int x, int y, Color color, int sideLength = 50)
         {
             this.x = x;
             this.y = y;
-            this.radius = radius;
+            this.sideLength = sideLength;
             standartPen = new Pen(Color.Black, 5);
             selectedPen = new Pen(Color.Red, 5);
             isActive = false;
@@ -25,19 +25,18 @@ namespace OOPLab4
         {
             if (isActive)
             {
-                g.DrawEllipse(selectedPen, x - radius, y - radius, radius * 2, radius * 2);
-
+                g.DrawRectangle(selectedPen, x - sideLength / 2, y - sideLength / 2, sideLength, sideLength);
             }
             else
             {
-                g.DrawEllipse(standartPen, x - radius, y - radius, radius * 2, radius * 2);
+                g.DrawRectangle(standartPen, x - sideLength / 2, y - sideLength / 2, sideLength, sideLength);
             }
-            g.FillEllipse(new SolidBrush(currentColor), new Rectangle(x - radius, y - radius, radius * 2, radius * 2));
+            g.FillRectangle(new SolidBrush(currentColor), new Rectangle(x - sideLength / 2, y - sideLength / 2, sideLength, sideLength));
         }
 
         public override bool intersects(MyVector coords)
         {
-            if ((coords.X - x) * (coords.X - x) + (coords.Y - y) * (coords.Y - y) <= radius * radius)
+            if (coords.X >= x - sideLength / 2 && coords.X <= x + sideLength / 2 && coords.Y >= y - sideLength / 2 && coords.Y <= y + sideLength / 2)
             {
                 return true;
             }
@@ -60,15 +59,15 @@ namespace OOPLab4
 
         public override void getRect(MyVector leftTop, MyVector rightBottom)
         {
-            leftTop.X = x - radius;
-            leftTop.Y = y - radius;
-            rightBottom.X = x + radius;
-            rightBottom.Y = y + radius;
+            leftTop.X = x - sideLength / 2;
+            leftTop.Y = y - sideLength / 2;
+            rightBottom.X = x + sideLength / 2;
+            rightBottom.Y = y + sideLength / 2;
         }
 
         public override void changeScale(float factor)
         {
-            radius = Convert.ToInt32(factor * radius);
+            sideLength = Convert.ToInt32(factor * sideLength);
         }
     }
 }
