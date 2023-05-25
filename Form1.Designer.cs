@@ -42,9 +42,10 @@ namespace OOPLab4
             // 
             // PaintBox
             // 
-            this.PaintBox.Location = new System.Drawing.Point(78, 77);
+            this.PaintBox.Location = new System.Drawing.Point(58, 50);
+            this.PaintBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PaintBox.Name = "PaintBox";
-            this.PaintBox.Size = new System.Drawing.Size(566, 312);
+            this.PaintBox.Size = new System.Drawing.Size(490, 303);
             this.PaintBox.TabIndex = 0;
             this.PaintBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBox_Paint);
             this.PaintBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PaintBox_MouseClick);
@@ -52,9 +53,10 @@ namespace OOPLab4
             // checkBoxCtrl
             // 
             this.checkBoxCtrl.AutoSize = true;
-            this.checkBoxCtrl.Location = new System.Drawing.Point(79, 32);
+            this.checkBoxCtrl.Location = new System.Drawing.Point(59, 21);
+            this.checkBoxCtrl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxCtrl.Name = "checkBoxCtrl";
-            this.checkBoxCtrl.Size = new System.Drawing.Size(102, 24);
+            this.checkBoxCtrl.Size = new System.Drawing.Size(75, 17);
             this.checkBoxCtrl.TabIndex = 1;
             this.checkBoxCtrl.Text = "Ctrl Button";
             this.checkBoxCtrl.UseVisualStyleBackColor = true;
@@ -63,9 +65,10 @@ namespace OOPLab4
             // checkBoxCollision
             // 
             this.checkBoxCollision.AutoSize = true;
-            this.checkBoxCollision.Location = new System.Drawing.Point(187, 32);
+            this.checkBoxCollision.Location = new System.Drawing.Point(140, 21);
+            this.checkBoxCollision.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxCollision.Name = "checkBoxCollision";
-            this.checkBoxCollision.Size = new System.Drawing.Size(145, 24);
+            this.checkBoxCollision.Size = new System.Drawing.Size(102, 17);
             this.checkBoxCollision.TabIndex = 2;
             this.checkBoxCollision.Text = "Multiple collision";
             this.checkBoxCollision.UseVisualStyleBackColor = true;
@@ -73,13 +76,14 @@ namespace OOPLab4
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 390);
             this.Controls.Add(this.checkBoxCollision);
             this.Controls.Add(this.checkBoxCtrl);
             this.Controls.Add(this.PaintBox);
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
