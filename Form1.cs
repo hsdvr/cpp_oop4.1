@@ -20,7 +20,7 @@ namespace OOPLab4
         private void PaintBox_MouseClick(object sender, MouseEventArgs e)
         {
             bool isFirstLayer = true;
-            //for (int i = storage.size - 1; i >= 0; --i)
+    
             foreach(Figure item in storage)
             {
                 // Нажатие мышки вместе с активным checkBoxCtrl
@@ -34,7 +34,7 @@ namespace OOPLab4
                             item.isActive = true;
                             isFirstLayer = false;
                         }
-                        // Не затираем активные элементы, так как работает Ctrl
+                       
                     }
                     else
                     {
@@ -102,7 +102,7 @@ namespace OOPLab4
             {
                 pressedCtrl = true;
             }
-            if (e.KeyCode == Keys.Back)
+            if (e.KeyCode == Keys.Delete)
             {
                 storage.deleteActiveElements();
 
